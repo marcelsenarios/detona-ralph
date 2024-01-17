@@ -10,11 +10,15 @@ const state = {
         score: document.querySelector('#score'),
     },
     values: {
-        timerId: null,
         gameVelocity: 1000,
         hitposition: 0,
         result: 0,
+        currentTime: 60,
     },
+    actions: {
+        timerId: setInterval(randomSquare, 1000),
+        countDownTimerId: setInterval(countDown, 1000),        
+    }
 }
 
 /**
@@ -31,6 +35,21 @@ function addListenerHitBox() {
         })
     });
 }
+
+/**
+ * faz a contagem do tempo [Time Left]
+ */
+function countDown() {
+    state.values.currentTime--;
+    state.view.timeLeft.textContent = state.values.currentTime;
+
+    if(state.values.currentTime <= 0) {
+        clearInterval(state.actions.timerId);
+        clearInterval(state.actions.countDownTimerId);
+        alert("Game Over! O seu resultado foi: "+state.values.result);
+    } 
+}
+
 
 /**
  * gera um inimigo aleatóriamente
@@ -51,9 +70,9 @@ function randomSquare() {
 /**
  * move o inimigo randomicamente
  */
-function moveEnemy() {
-    state.values.timerId = setInterval(randomSquare, state.values.gameVelocity);
-}
+// function moveEnemy() {
+//     state.values.timerId = setInterval(randomSquare, state.values.gameVelocity);
+// }
 /**
  *  função de inicialização
  */

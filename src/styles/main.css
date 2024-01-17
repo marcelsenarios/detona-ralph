@@ -1,5 +1,8 @@
 .container {
     display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 100vh;
 }
 
 .menu {
@@ -10,4 +13,24 @@
     width: 100%;
     background-color: #000000;
     color: #ffffff;
+}
+
+.panel {
+    margin-top: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid #f00;
+}
+
+
+.square {
+    width: 150px;
+    height: 150px;
+    border: 1px solid #000;
+    background-color: #7fffd4;
+}
+
+.enemy {
+    background-color: #ff0000;
 }

@@ -28,9 +28,10 @@ function addListenerHitBox() {
     state.view.squares.forEach((square) => {
         square.addEventListener('mousedown', () => {
             if(square.id === state.values.hitposition) {
-                state.values.result++;
+                state.values.result++;                
                 state.view.score.textContent = state.values.result;
-                state.values.hitposition = null
+                state.values.hitposition = null;
+                playSound('hit');
             }
         })
     });
@@ -47,9 +48,15 @@ function countDown() {
         clearInterval(state.actions.timerId);
         clearInterval(state.actions.countDownTimerId);
         alert("Game Over! O seu resultado foi: "+state.values.result);
+        initialize();
     } 
 }
 
+function playSound(audioName) {
+    let audio = new Audio(`./src/audios/${audioName}.m4a`);
+    audio.volume = 0.2;
+    audio.play();
+}
 
 /**
  * gera um inimigo aleatóriamente
@@ -77,7 +84,7 @@ function randomSquare() {
  *  função de inicialização
  */
 function initialize() {
-    moveEnemy();
+    // moveEnemy();
     addListenerHitBox();
 }
 
